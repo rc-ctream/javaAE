@@ -7,16 +7,21 @@ import java.util.List;
 
 public class CustomerService {
 
-    private CustomerRepository customerRepository;
+    private static final CustomerService INSTANCE = new CustomerService();
+    private final CustomerRepository customerRepository;
 
-    public CustomerService() {
+    public static CustomerService getInstance() {
+        return INSTANCE;
+    }
+
+    private CustomerService() {
         this.customerRepository = new CustomerRepository();
     }
 
     public Customer createCustomer( String name, String email ) {
         var customer = new Customer();
         customer.setName( name );
-        customer.setPost( email );
+        customer.setEmail( email );
         return this.customerRepository.save( customer );
     }
 
