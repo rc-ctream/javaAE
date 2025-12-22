@@ -1,7 +1,9 @@
 package com.schoolar.java.customers.service;
 
-import com.schoolar.java.customers.Customer;
+import com.schoolar.java.customers.entity.Customer;
 import com.schoolar.java.customers.persistence.CustomerRepository;
+
+import java.util.List;
 
 public class CustomerService {
 
@@ -14,8 +16,12 @@ public class CustomerService {
     public Customer createCustomer( String name, String email ) {
         var customer = new Customer();
         customer.setName( name );
-        customer.setEmail( email );
+        customer.setPost( email );
         return this.customerRepository.save( customer );
+    }
+
+    public List<Customer> getAll() {
+        return customerRepository.findAll();
     }
 
 }

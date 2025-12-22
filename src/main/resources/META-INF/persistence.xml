@@ -4,7 +4,7 @@
     <persistence-unit name="customerPU">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <class>com.schoolar.java.customers.Customer</class>
+        <class>com.schoolar.java.customers.entity.Customer</class>
 
         <properties>
             <!-- JDBC -->

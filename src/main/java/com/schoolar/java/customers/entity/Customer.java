@@ -1,9 +1,6 @@
-package com.schoolar.java.customers;
+package com.schoolar.java.customers.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Customer {
@@ -13,7 +10,9 @@ public class Customer {
     private Long id;
 
     private String name;
-    private String email;
+
+    @Column( name = "email" )
+    private String post;
 
     public Customer() {
     }
@@ -34,12 +33,12 @@ public class Customer {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPost() {
+        return post;
     }
 
-    public void setEmail( String email ) {
-        this.email = email;
+    public void setPost( String post ) {
+        this.post = post;
     }
 
     @Override
@@ -47,7 +46,7 @@ public class Customer {
         return "Customer{" +
                "id=" + id +
                ", name='" + name + '\'' +
-               ", email='" + email + '\'' +
+               ", post='" + post + '\'' +
                '}';
     }
 }

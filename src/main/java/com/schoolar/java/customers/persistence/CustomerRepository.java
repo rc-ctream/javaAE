@@ -1,6 +1,8 @@
 package com.schoolar.java.customers.persistence;
 
-import com.schoolar.java.customers.Customer;
+import com.schoolar.java.customers.entity.Customer;
+
+import java.util.List;
 
 public class CustomerRepository {
 
@@ -13,4 +15,14 @@ public class CustomerRepository {
             return em.find( Customer.class, customer.getId() );
         }
     }
+
+    public List<Customer> findAll() {
+        try ( var em = JPAUtil.createEntityManager() ) {
+            em.getTransaction().begin();
+            return em
+                    .createQuery( "SELECT c FROM Customer c", Customer.class )
+                    .getResultList();
+        }
+    }
+
 }
