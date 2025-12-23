@@ -13,7 +13,7 @@ public class Main {
 
     @SuppressWarnings( "java:S106" )
     public static void main( String[] args ) {
-        initDb();
+         initDb();
     }
 
     private static void initDb() {
