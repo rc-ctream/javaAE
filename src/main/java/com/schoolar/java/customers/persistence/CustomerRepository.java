@@ -25,4 +25,13 @@ public class CustomerRepository {
         }
     }
 
+    public Customer findOneById( long id ) {
+        try ( var em = JPAUtil.createEntityManager() ) {
+            em.getTransaction().begin();
+            return em
+                    .createQuery( "SELECT c FROM Customer c where c.id = :id", Customer.class )
+                    .setParameter( "id", id )
+                    .getSingleResult();
+        }
+    }
 }

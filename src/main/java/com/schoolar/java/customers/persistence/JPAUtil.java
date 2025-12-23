@@ -6,26 +6,16 @@ import jakarta.persistence.Persistence;
 
 public class JPAUtil {
 
-    public static final String PERSISTENCE_UNIT_NAME = "customerPU";
+    static final String PERSISTENCE_UNIT_NAME = "customerPU";
 
-    private static final EntityManagerFactory EMF = Persistence
+    private static final EntityManagerFactory MANAGER_FACTORY = Persistence
             .createEntityManagerFactory( PERSISTENCE_UNIT_NAME );
-
-    private static final EntityManager EM = EMF.createEntityManager();
 
     private JPAUtil() {
     }
 
-    public static EntityManagerFactory createEMF() {
-        return EMF;
-    }
-
-    public static void shutdown() {
-        EM.close();
-        EMF.close();
-    }
-
     public static EntityManager createEntityManager() {
-        return EM;
+        return MANAGER_FACTORY.createEntityManager();
     }
+
 }

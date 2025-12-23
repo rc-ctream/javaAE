@@ -29,4 +29,7 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
+    public Customer getCustomerById( long id ) {
+        return customerRepository.findOneById( id );
+    }
 }
