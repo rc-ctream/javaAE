@@ -2,6 +2,7 @@ package com.schoolar.java.customers.service;
 
 import com.schoolar.java.customers.entity.Contact;
 import com.schoolar.java.customers.entity.Customer;
+import com.schoolar.java.customers.entity.CustomerStatus;
 import com.schoolar.java.customers.persistence.CustomerRepository;
 
 import java.util.List;
@@ -32,7 +33,10 @@ public class CustomerService {
     }
 
     public List<Customer> getAll() {
-        return customerRepository.findAll();
+        return customerRepository.findAll()
+                .stream()
+                .filter( customer -> customer.getStatus() == CustomerStatus.ACTIVE )
+                .toList();
     }
 
     public Customer getCustomerById( long id ) {
@@ -46,4 +50,11 @@ public class CustomerService {
     public Customer createCustomer( Customer customer ) {
         return this.customerRepository.save( customer );
     }
+
+    public void deleteCustomer( long id ) {
+        var customer = getCustomerById( id );
+        customer.setStatus( CustomerStatus.INACTIVE );
+        updateCustomer( customer );
+    }
+
 }

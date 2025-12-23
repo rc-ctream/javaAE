@@ -7,3 +7,5 @@ services:
       POSTGRES_DB: javae
       POSTGRES_USER: javae
       POSTGRES_PASSWORD: secret
+    volumes:
+      - ./init-db:/docker-entrypoint-initdb.d

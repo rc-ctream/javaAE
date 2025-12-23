@@ -1,0 +1,1 @@
+UPDATE public.customer SET status = 'INACTIVE' where status = 'ACTIVE';

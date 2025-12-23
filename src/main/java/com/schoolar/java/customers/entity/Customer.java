@@ -25,6 +25,9 @@ public class Customer {
     @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true )
     private List<Order> orders = new ArrayList<>();
 
+    @Enumerated( EnumType.STRING )
+    private CustomerStatus status = CustomerStatus.ACTIVE;
+
     public void addOrder( Order order ) {
         this.orders.add( order );
     }
