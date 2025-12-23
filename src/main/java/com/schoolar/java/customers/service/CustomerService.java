@@ -1,5 +1,6 @@
 package com.schoolar.java.customers.service;
 
+import com.schoolar.java.customers.entity.Contact;
 import com.schoolar.java.customers.entity.Customer;
 import com.schoolar.java.customers.persistence.CustomerRepository;
 
@@ -21,7 +22,12 @@ public class CustomerService {
     public Customer createCustomer( String name, String email ) {
         var customer = new Customer();
         customer.setName( name );
-        customer.setEmail( email );
+
+        var contact = new Contact();
+        contact.setEmail( email );
+
+        customer.setContact( contact );
+
         return this.customerRepository.save( customer );
     }
 
@@ -31,5 +37,13 @@ public class CustomerService {
 
     public Customer getCustomerById( long id ) {
         return customerRepository.findOneById( id );
+    }
+
+    public void updateCustomer( Customer customer ) {
+        customerRepository.update( customer );
+    }
+
+    public Customer createCustomer( Customer customer ) {
+        return this.customerRepository.save( customer );
     }
 }

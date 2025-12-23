@@ -34,4 +34,12 @@ public class CustomerRepository {
                     .getSingleResult();
         }
     }
+
+    public void update( Customer customer ) {
+        try ( var em = JPAUtil.createEntityManager() ) {
+            em.getTransaction().begin();
+            em.merge( customer );
+            em.getTransaction().commit();
+        }
+    }
 }

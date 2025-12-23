@@ -1,10 +1,10 @@
 package com.schoolar.java.customers.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -15,6 +15,17 @@ public class Customer {
     private Long id;
 
     private String name;
-    private String email;
 
+    @Embedded
+    private Contact contact;
+
+    @JoinTable( name = "customer_orders",
+            joinColumns = @JoinColumn( name = "customer_id" ),
+            inverseJoinColumns = @JoinColumn( name = "order_id" ) )
+    @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true )
+    private List<Order> orders = new ArrayList<>();
+
+    public void addOrder( Order order ) {
+        this.orders.add( order );
+    }
 }

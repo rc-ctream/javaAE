@@ -5,6 +5,7 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <class>com.schoolar.java.customers.entity.Customer</class>
+        <class>com.schoolar.java.customers.entity.Order</class>
 
         <properties>
             <!-- JDBC -->
@@ -16,7 +17,7 @@
             <property name="jakarta.persistence.jdbc.password" value="secret"/>
 
             <!-- Hibernate -->
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
         </properties>
